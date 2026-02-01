@@ -1,42 +1,59 @@
-# Hooks
+<p align="center">
+  <img src="assets/logo.png" alt="Hooks - Robot Pirate Mascot" width="200" />
+</p>
 
-A unified monitoring and observability platform for development workflows. Monitor Claude Code agents, runtime services, and scheduled tasks from a single dashboard.
+<h1 align="center">Hooks</h1>
 
-> **New to Hooks?** Check out the [Getting Started Guide](./GETTING_STARTED.md) for step-by-step setup instructions.
+<p align="center">
+  <strong>Manage yer agents like a pirate! Arrr! </strong>
+</p>
+
+<p align="center">
+  A unified monitoring and observability platform for development workflows.<br/>
+  Keep a weather eye on your Claude Code agents, runtime services, and scheduled tasks.
+</p>
+
+---
+
+> **New to Hooks?** Check out the [Getting Started Guide](./GETTING_STARTED.md) to set sail with step-by-step instructions.
+
+## Why Hooks?
+
+Because every good captain needs to know what their crew is up to! Whether your AI agents are swabbing the deck (refactoring code) or hunting for buried treasure (searching files), Hooks keeps you informed in real-time.
 
 ## Features
 
-- **Claude Code Agent Monitoring** - Real-time status of AI coding assistants across projects
-- **Runtime Monitoring** - Health checks for HTTP endpoints, TCP services, processes, and Docker containers
-- **Cron Job Tracking** - Monitor scheduled tasks with miss detection and failure alerts
-- **Web Dashboard** - Real-time visualization with WebSocket updates
-- **Alerts** - Configurable notifications via email, Slack, webhooks, or PagerDuty
+- **Claude Code Agent Monitoring** - Keep a spyglass on your AI coding assistants across all projects
+- **Runtime Monitoring** - Health checks for HTTP endpoints, TCP services, processes, and Docker containers (no scurvy services allowed!)
+- **Cron Job Tracking** - Monitor scheduled tasks with miss detection and failure alerts (never miss the tide again)
+- **Web Dashboard** - Real-time visualization with WebSocket updates (as fast as a ship with the wind at her back)
+- **Alerts** - Configurable notifications via email, Slack, webhooks, or PagerDuty (send word by carrier parrot)
 
-## Architecture
+## The Crew (Architecture)
 
 ```
 packages/
-  cli/      - Command-line interface for reporting events
-  daemon/   - Background service for runtime health checks
-  server/   - REST API and WebSocket backend
-  web/      - Next.js dashboard
-  shared/   - Common types and utilities
+  cli/      - Command-line interface (the captain's orders)
+  daemon/   - Background service for health checks (the lookout in the crow's nest)
+  server/   - REST API and WebSocket backend (the ship's hull)
+  web/      - Next.js dashboard (the treasure map)
+  shared/   - Common types and utilities (the ship's provisions)
 ```
 
 ## Quick Start
 
 ### Prerequisites
 
-- Node.js 20+
-- Docker & Docker Compose (for services)
-- npm 10+
+- Node.js 20+ (the wind in yer sails)
+- Docker & Docker Compose (fer containerized voyages)
+- npm 10+ (the riggin')
 
-### Development Setup
+### Hoist the Colors! (Development Setup)
 
 1. **Clone and install dependencies:**
 
 ```bash
-git clone <repo-url> hooks
+git clone https://github.com/fsaint/hooks.git
 cd hooks
 npm install
 ```
@@ -65,13 +82,13 @@ npm run dev -w @hooks/server
 npm run dev -w @hooks/web
 ```
 
-6. **Access the dashboard at `http://localhost:3000`**
+6. **Access the dashboard at `http://localhost:3000`** - X marks the spot!
 
 ## Configuration
 
 ### Server Configuration
 
-Environment variables for the server:
+Environment variables for the server (adjust yer headings):
 
 | Variable | Default | Description |
 |----------|---------|-------------|
@@ -84,7 +101,7 @@ Environment variables for the server:
 
 ### CLI Configuration
 
-The CLI stores configuration in `~/.hooks/config.yaml`:
+The CLI stores configuration in `~/.hooks/config.yaml` (the captain's log):
 
 ```yaml
 server:
@@ -102,7 +119,7 @@ To monitor Claude Code agents, add hooks to your `~/.claude/settings.json`:
 hooks-cli setup-claude-hooks
 ```
 
-Or manually configure:
+Or manually configure (for ye seasoned sailors):
 
 ```json
 {
@@ -137,7 +154,7 @@ Or manually configure:
 ### Authentication
 
 ```bash
-# Login with email/password
+# Login with email/password (show yer colors!)
 hooks-cli login
 
 # Configure server URL
@@ -150,7 +167,7 @@ hooks-cli config set server.url http://localhost:3001
 # Report agent event
 hooks-cli agent event --type session_start --session-id <id>
 
-# Check agent status
+# Check agent status (who's on deck?)
 hooks-cli agent status
 ```
 
@@ -168,13 +185,13 @@ hooks-cli cron end --name "daily-backup" --success
 ### Runtime Monitoring
 
 ```bash
-# Register a runtime check
+# Register a runtime check (send out a scout)
 hooks-cli runtime register --name "api" --type http --url https://api.example.com/health
 ```
 
 ## Daemon
 
-The daemon runs health checks for configured runtimes:
+The daemon runs health checks for configured runtimes (the tireless lookout):
 
 ```bash
 # Start the daemon
@@ -202,7 +219,7 @@ runtimes:
 
 ### Authentication
 
-All API requests require a Bearer token:
+All API requests require a Bearer token (yer letter of marque):
 
 ```
 Authorization: Bearer hk_your_token_here
@@ -212,9 +229,9 @@ Authorization: Bearer hk_your_token_here
 
 | Method | Path | Description |
 |--------|------|-------------|
-| `GET` | `/health` | Health check |
+| `GET` | `/health` | Health check (is the ship seaworthy?) |
 | `POST` | `/api/v1/auth/login` | Login |
-| `POST` | `/api/v1/auth/register` | Register |
+| `POST` | `/api/v1/auth/register` | Register (join the crew) |
 | `GET` | `/api/v1/projects` | List projects |
 | `POST` | `/api/v1/projects` | Create project |
 | `GET` | `/api/v1/agents/projects/:id/sessions` | List agent sessions |
@@ -227,7 +244,7 @@ Authorization: Bearer hk_your_token_here
 
 ### WebSocket
 
-Connect to `/ws` for real-time updates:
+Connect to `/ws` for real-time updates (faster than a message in a bottle):
 
 ```javascript
 const ws = new WebSocket('ws://localhost:3001/ws');
@@ -244,7 +261,7 @@ ws.send(JSON.stringify({
 
 ## Docker Deployment
 
-### Full Stack
+### Full Stack (Set Sail!)
 
 ```bash
 docker-compose up -d
@@ -259,7 +276,7 @@ docker-compose -f docker-compose.dev.yml up -d
 ## Testing
 
 ```bash
-# Run all tests
+# Run all tests (check for leaks in the hull)
 npm test
 
 # Run tests for specific package
@@ -274,15 +291,15 @@ npm run test -w @hooks/daemon
 packages/
   cli/
     src/
-      commands/     # CLI commands
-      lib/          # Utilities (config, api-client, event-queue)
+      commands/     # CLI commands (captain's orders)
+      lib/          # Utilities (ship's tools)
   daemon/
     src/
-      checkers/     # Health check implementations (HTTP, TCP, etc.)
+      checkers/     # Health check implementations (the lookouts)
       lib/          # Config, scheduler
   server/
     src/
-      routes/       # API routes
+      routes/       # API routes (the trade routes)
       lib/          # Auth, config, store, redis, pubsub
       schemas/      # Zod validation schemas
       db/           # Drizzle ORM schema and migrations
@@ -291,7 +308,7 @@ packages/
       app/          # Next.js app router pages
       components/   # React components
       contexts/     # Auth and WebSocket contexts
-      hooks/        # Custom React hooks
+      hooks/        # Custom React hooks (see what we did there?)
       lib/          # API client
   shared/
     src/
@@ -299,6 +316,20 @@ packages/
       utils/        # Shared utilities
 ```
 
+## The Pirate's Code (Contributing)
+
+1. Fork the repo (commandeer yer own vessel)
+2. Create a feature branch (`git checkout -b feature/shiny-new-hook`)
+3. Commit yer changes (`git commit -m 'Add some treasure'`)
+4. Push to the branch (`git push origin feature/shiny-new-hook`)
+5. Open a Pull Request (request to join the fleet)
+
 ## License
 
-MIT
+MIT - Free as the seven seas!
+
+---
+
+<p align="center">
+  <em>"Why do pirates make great programmers? Because they're experts at the hook!" </em>
+</p>
